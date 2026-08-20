@@ -704,14 +704,15 @@
         // ============================================
         // CONFIGURACIÓN FIREBASE - REEMPLAZA ESTO
         // ============================================
-        const firebaseConfig = {
-            apiKey: "TU_API_KEY",
-            authDomain: "TU_PROYECTO.firebaseapp.com",
-            projectId: "TU_PROYECTO",
-            storageBucket: "TU_PROYECTO.appspot.com",
-            messagingSenderId: "TU_SENDER_ID",
-            appId: "TU_APP_ID"
-        };
+       const firebaseConfig = {
+  apiKey: "AIzaSyDEZQrwe6ocSTWB6dNKT_5xuJaFrKnrZ0U",
+  authDomain: "drip-store-pro.firebaseapp.com",
+  databaseURL: "https://drip-store-pro-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "drip-store-pro",
+  storageBucket: "drip-store-pro.firebasestorage.app",
+  messagingSenderId: "904984433190",
+  appId: "1:904984433190:web:112e2a2b90106d12138ce7"
+};
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
@@ -724,7 +725,7 @@
         const ADMIN_EMAIL = "tu-email@gmail.com"; // ← REEMPLAZA CON TU EMAIL DE GOOGLE
         
         // Opción 2: Por UID (más seguro)
-        // const ADMIN_UID = "tu-uid-de-google";
+        // const ADMIN_UID = "IB6Hv0atG3grskysJkCg9hJhyv72";
 
         let currentUser = null;
         let products = [];
