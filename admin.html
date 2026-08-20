@@ -739,7 +739,7 @@
                 const user = result.user;
                 
                 // Verificar si es el admin autorizado
-                if (user.email === ADMIN_UID) {
+                if (user.uid === ADMIN_UID) {
                     // Éxito - es el admin
                     currentUser = user;
                     showSuccess("Bienvenido, " + user.displayName);
