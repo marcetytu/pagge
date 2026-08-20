@@ -861,65 +861,213 @@
         }
 
         /* Music Player */
-        .music-player {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: white;
-            border-radius: 50px;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            z-index: 999;
-        }
+        /* Music Player - Estilo Spotify Mejorado */
+.music-player {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    max-width: 400px;
+    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 16px;
+    padding: 16px 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: slideUp 0.5s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
 
-        .music-toggle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: black;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .music-toggle:hover {
-            background: var(--accent);
-        }
+.music-album-art {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
 
-        .music-info {
-            font-size: 0.8rem;
-        }
+.music-album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
 
-        .music-title {
-            font-weight: 600;
-        }
+.music-album-art:hover img {
+    transform: scale(1.1);
+}
 
-        .music-artist {
-            color: var(--gray);
-            font-size: 0.75rem;
-        }
+.music-info-container {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
 
-        .music-controls {
-            display: flex;
-            gap: 0.8rem;
-        }
+.music-track-name {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: marquee 10s linear infinite;
+}
 
-        .music-controls i {
-            cursor: pointer;
-            font-size: 1rem;
-            color: var(--gray);
-            transition: color 0.3s ease;
-        }
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
-        .music-controls i:hover {
-            color: black;
-        }
+.music-artist-name {
+    color: #b3b3b3;
+    font-size: 12px;
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Controles estilo Spotify */
+.music-controls-spotify {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.music-control-btn {
+    background: none;
+    border: none;
+    color: #b3b3b3;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-control-btn:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+.music-control-btn.play-pause {
+    width: 40px;
+    height: 40px;
+    background: white;
+    color: #1a1a2e;
+    box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+}
+
+.music-control-btn.play-pause:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(255,255,255,0.3);
+}
+
+/* Barra de progreso */
+.music-progress-container {
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.music-progress-bar {
+    height: 100%;
+    background: #1db954;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s linear;
+    position: relative;
+}
+
+.music-progress-bar::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.music-progress-container:hover .music-progress-bar::after {
+    opacity: 1;
+}
+
+/* Tiempo */
+.music-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #b3b3b3;
+    margin-top: 6px;
+}
+
+/* Animación de ondas cuando reproduce */
+.music-playing-animation {
+    display: none;
+    align-items: flex-end;
+    gap: 3px;
+    height: 20px;
+    margin-left: auto;
+}
+
+.music-playing-animation.active {
+    display: flex;
+}
+
+.music-bar {
+    width: 3px;
+    background: #1db954;
+    border-radius: 1px;
+    animation: sound 0ms -800ms linear infinite alternate;
+}
+
+.music-bar:nth-child(1) { height: 40%; animation-duration: 474ms; }
+.music-bar:nth-child(2) { height: 60%; animation-duration: 433ms; }
+.music-bar:nth-child(3) { height: 80%; animation-duration: 407ms; }
+.music-bar:nth-child(4) { height: 50%; animation-duration: 458ms; }
+
+@keyframes sound {
+    0% { height: 20%; opacity: 0.5; }
+    100% { height: 100%; opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .music-player {
+        left: 10px;
+        right: 80px; /* Espacio para WhatsApp */
+        max-width: none;
+    }
+}
 
         /* Cart Sidebar */
         .cart-sidebar {
@@ -1562,19 +1710,55 @@
     </div>
 
     <!-- Music Player -->
-    <div class="music-player" id="musicPlayer">
-        <div class="music-toggle" onclick="toggleMusic()">
-            <i class="fas fa-music" id="musicIcon"></i>
+   <!-- Music Player - Estilo Spotify -->
+<div class="music-player" id="musicPlayer">
+    <!-- Portada del álbum -->
+    <div class="music-album-art">
+        <img id="albumCover" src="https://via.placeholder.com/60/1db954/ffffff?text=♪" alt="Album">
+    </div>
+    
+    <!-- Info y controles -->
+    <div style="flex: 1; min-width: 0;">
+        <div class="music-info-container">
+            <div class="music-track-name" id="musicTitle">Cargando...</div>
+            <div class="music-artist-name" id="musicArtist">Esperando...</div>
         </div>
-        <div class="music-info">
-            <span class="music-title" id="musicTitle">Loading...</span>
-            <span class="music-artist" id="musicArtist">Esperando...</span>
+        
+        <!-- Controles -->
+        <div class="music-controls-spotify">
+            <button class="music-control-btn" onclick="previousTrack()" title="Anterior">
+                <i class="fas fa-step-backward"></i>
+            </button>
+            
+            <button class="music-control-btn play-pause" onclick="togglePlay()" id="playPauseBtn" title="Play/Pause">
+                <i class="fas fa-play"></i>
+            </button>
+            
+            <button class="music-control-btn" onclick="nextTrack()" title="Siguiente">
+                <i class="fas fa-step-forward"></i>
+            </button>
+            
+            <!-- Animación de ondas -->
+            <div class="music-playing-animation" id="playingAnimation">
+                <div class="music-bar"></div>
+                <div class="music-bar"></div>
+                <div class="music-bar"></div>
+                <div class="music-bar"></div>
+            </div>
         </div>
-        <div class="music-controls">
-            <i class="fas fa-play" id="playPauseBtn" onclick="togglePlay()"></i>
-            <i class="fas fa-volume-up" onclick="toggleMute()"></i>
+        
+        <!-- Barra de progreso -->
+        <div class="music-progress-container" onclick="seekTrack(event)">
+            <div class="music-progress-bar" id="progressBar"></div>
+        </div>
+        
+        <!-- Tiempos -->
+        <div class="music-time">
+            <span id="currentTime">0:00</span>
+            <span id="duration">0:00</span>
         </div>
     </div>
+</div>
 
     <!-- Cart Sidebar -->
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
@@ -1741,11 +1925,134 @@
         // ============================================
         // CONFIGURACIÓN MÚSICA
         // ============================================
-        const MUSIC_CONFIG = {
-            url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-            title: "Street Vibes 2026",
-            artist: "Drip Store Mix"
-        };
+       // ============================================
+// REPRODUCTOR ESTILO SPOTIFY (MEJORADO)
+// ============================================
+
+// Lista de canciones (puedes modificar esto)
+const PLAYLIST = [
+    {
+        title: "Street Vibes 2026",
+        artist: "Drip Store Mix",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        cover: "https://via.placeholder.com/60/ff6b6b/ffffff?text=1"
+    },
+    {
+        title: "Urban Flow",
+        artist: "Hip Hop Beats",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        cover: "https://via.placeholder.com/60/4ecdc4/ffffff?text=2"
+    },
+    {
+        title: "Night Drive",
+        artist: "Synthwave Mix",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        cover: "https://via.placeholder.com/60/95e1d3/ffffff?text=3"
+    },
+    {
+        title: "Chill Mode",
+        artist: "Lo-Fi Beats",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        cover: "https://via.placeholder.com/60/f38181/ffffff?text=4"
+    }
+];
+
+let currentTrackIndex = 0;
+let audio = new Audio();
+let isPlaying = false;
+
+// Inicializar reproductor
+function initMusic() {
+    loadTrack(currentTrackIndex);
+    
+    // Eventos del audio
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('loadedmetadata', () => {
+        document.getElementById('duration').textContent = formatTime(audio.duration);
+    });
+    audio.addEventListener('ended', nextTrack);
+}
+
+function loadTrack(index) {
+    const track = PLAYLIST[index];
+    audio.src = track.url;
+    audio.load();
+    
+    document.getElementById('musicTitle').textContent = track.title;
+    document.getElementById('musicArtist').textContent = track.artist;
+    document.getElementById('albumCover').src = track.cover;
+    
+    // Resetear barra
+    document.getElementById('progressBar').style.width = '0%';
+    document.getElementById('currentTime').textContent = '0:00';
+}
+
+function togglePlay() {
+    const btn = document.getElementById('playPauseBtn');
+    const animation = document.getElementById('playingAnimation');
+    
+    if (isPlaying) {
+        audio.pause();
+        btn.innerHTML = '<i class="fas fa-play"></i>';
+        animation.classList.remove('active');
+    } else {
+        audio.play().catch(e => {
+            showToast('Haz clic en la página primero para activar el audio', 'info');
+        });
+        btn.innerHTML = '<i class="fas fa-pause"></i>';
+        animation.classList.add('active');
+    }
+    
+    isPlaying = !isPlaying;
+}
+
+function nextTrack() {
+    currentTrackIndex = (currentTrackIndex + 1) % PLAYLIST.length;
+    loadTrack(currentTrackIndex);
+    if (isPlaying) {
+        audio.play();
+    }
+    showToast(`Siguiente: ${PLAYLIST[currentTrackIndex].title}`, 'success');
+}
+
+function previousTrack() {
+    currentTrackIndex = (currentTrackIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
+    loadTrack(currentTrackIndex);
+    if (isPlaying) {
+        audio.play();
+    }
+    showToast(`Anterior: ${PLAYLIST[currentTrackIndex].title}`, 'success');
+}
+
+function updateProgress() {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    document.getElementById('progressBar').style.width = percent + '%';
+    document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
+}
+
+function seekTrack(event) {
+    const container = event.currentTarget;
+    const clickX = event.offsetX;
+    const width = container.offsetWidth;
+    const percent = clickX / width;
+    
+    audio.currentTime = percent * audio.duration;
+}
+
+function formatTime(seconds) {
+    if (isNaN(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+}
+
+// Atajo de teclado (barra espaciadora para play/pause)
+document.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+        e.preventDefault();
+        togglePlay();
+    }
+});
 
         // ============================================
         // CONFIGURACIÓN HUGGING FACE (IA GRATUITA)
