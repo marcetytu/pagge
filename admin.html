@@ -216,6 +216,51 @@
             margin: 0 auto;
         }
 
+        /* PESTAÑAS PRINCIPALES */
+        .main-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .main-tab {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #888;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .main-tab:hover {
+            color: #000;
+            background: #f5f5f5;
+        }
+
+        .main-tab.active {
+            color: white;
+            background: #000;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -247,6 +292,7 @@
             font-weight: 700;
         }
 
+        /* SUB-PESTAÑAS DE PRODUCTOS */
         .admin-tabs {
             display: flex;
             gap: 1rem;
@@ -280,15 +326,6 @@
             background: #1db954;
         }
 
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.4s ease;
-        }
-
         .admin-grid {
             display: grid;
             grid-template-columns: 350px 1fr;
@@ -309,14 +346,14 @@
         }
 
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .form-group input,
@@ -334,39 +371,95 @@
             resize: vertical;
         }
 
+        /* MÚLTIPLES IMÁGENES */
+        .image-inputs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .image-input-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .image-input-row input {
+            flex: 1;
+        }
+
+        .btn-add-image,
+        .btn-remove-image {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-add-image {
+            background: #1db954;
+            color: white;
+        }
+
+        .btn-remove-image {
+            background: #ff3e3e;
+            color: white;
+        }
+
+        .image-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .image-preview-grid img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* TALLES DISPONIBLES */
+        .sizes-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .size-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .size-checkbox:hover {
+            border-color: #1db954;
+        }
+
+        .size-checkbox input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .size-checkbox.checked {
+            background: #1db954;
+            color: white;
+            border-color: #1db954;
+        }
+
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             margin: 1rem 0;
-        }
-
-        .image-upload {
-            border: 2px dashed #ddd;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .image-upload:hover {
-            border-color: #1db954;
-            background: #f0fdf4;
-        }
-
-        .image-preview {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-
-        .image-preview img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
         }
 
         .btn-save {
@@ -501,12 +594,13 @@
         @media (max-width: 1024px) {
             .admin-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .admin-info .admin-details { display: none; }
+            .main-tabs { flex-wrap: wrap; }
         }
 
         @media (max-width: 768px) {
             .admin-header { flex-direction: column; gap: 1rem; padding: 1rem; }
             .stats-grid { grid-template-columns: 1fr; }
+            .sizes-container { grid-template-columns: repeat(3, 1fr); }
         }
     </style>
 </head>
@@ -558,7 +652,20 @@
         </div>
         
         <div class="admin-content">
-            <!-- Dashboard -->
+            <!-- PESTAÑAS PRINCIPALES -->
+            <div class="main-tabs">
+                <button class="main-tab active" onclick="showMainTab('dashboard')">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </button>
+                <button class="main-tab" onclick="showMainTab('products')">
+                    <i class="fas fa-box"></i> Productos
+                </button>
+                <button class="main-tab" onclick="showMainTab('orders')">
+                    <i class="fas fa-shopping-cart"></i> Pedidos
+                </button>
+            </div>
+
+            <!-- DASHBOARD -->
             <div class="tab-content active" id="tab-dashboard">
                 <h2 style="margin-bottom: 1.5rem;">Resumen</h2>
                 <div class="stats-grid">
@@ -581,101 +688,135 @@
                 </div>
             </div>
 
-            <!-- Products Tab -->
+            <!-- PRODUCTOS -->
             <div class="tab-content" id="tab-products">
                 <div class="admin-tabs">
-                    <button class="admin-tab active" onclick="showProductTab('list')">Productos</button>
-                    <button class="admin-tab" onclick="showProductTab('add')">Añadir Nuevo</button>
+                    <button class="admin-tab active" onclick="showProductTab('list')">
+                        <i class="fas fa-list"></i> Ver Productos
+                    </button>
+                    <button class="admin-tab" onclick="showProductTab('add')">
+                        <i class="fas fa-plus"></i> Añadir Nuevo
+                    </button>
                 </div>
 
+                <!-- LISTA DE PRODUCTOS -->
                 <div id="product-list-view">
-                    <div class="admin-grid">
-                        <div class="admin-form">
-                            <h3><i class="fas fa-filter"></i> Filtros</h3>
-                            <div class="form-group">
-                                <input type="text" id="searchProduct" placeholder="Buscar producto..." onkeyup="filterProducts()">
-                            </div>
-                        </div>
-                        
-                        <div class="admin-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Producto</th>
-                                        <th>Marca</th>
-                                        <th>Precio</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="productsTable"></tbody>
-                            </table>
-                        </div>
+                    <div class="admin-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Imagen</th>
+                                    <th>Producto</th>
+                                    <th>Marca</th>
+                                    <th>Precio</th>
+                                    <th>Talles</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTable"></tbody>
+                        </table>
                     </div>
                 </div>
 
+                <!-- FORMULARIO AÑADIR PRODUCTO -->
                 <div id="product-add-view" style="display: none;">
-                    <div class="admin-grid">
-                        <div class="admin-form">
-                            <h3 id="formTitle"><i class="fas fa-plus"></i> Añadir Producto</h3>
-                            <form id="productForm" onsubmit="saveProduct(event)">
-                                <input type="hidden" id="editProductId">
-                                
-                                <div class="form-group">
-                                    <label>Nombre *</label>
-                                    <input type="text" id="prodName" required>
+                    <div class="admin-form" style="max-width: 700px;">
+                        <h3 id="formTitle"><i class="fas fa-plus"></i> Añadir Producto</h3>
+                        <form id="productForm" onsubmit="saveProduct(event)">
+                            <input type="hidden" id="editProductId">
+                            
+                            <div class="form-group">
+                                <label>Nombre del Producto *</label>
+                                <input type="text" id="prodName" required placeholder="Ej: Hoodie Supreme Box Logo">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Marca *</label>
+                                <input type="text" id="prodBrand" required placeholder="Ej: Supreme">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Categoría *</label>
+                                <select id="prodCategory" required>
+                                    <option value="hoodies">Hoodies</option>
+                                    <option value="tshirts">Remeras</option>
+                                    <option value="sneakers">Sneakers</option>
+                                    <option value="accesorios">Accesorios</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Precio Actual *</label>
+                                <input type="number" id="prodPrice" required min="0" placeholder="45000">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Precio Anterior (oferta)</label>
+                                <input type="number" id="prodOldPrice" min="0" placeholder="Dejar vacío si no hay oferta">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea id="prodDescription" rows="3" placeholder="Descripción detallada del producto..."></textarea>
+                            </div>
+                            
+                            <!-- MÚLTIPLES IMÁGENES -->
+                            <div class="form-group">
+                                <label>Imágenes del Producto *</label>
+                                <div class="image-inputs-container" id="imageInputsContainer">
+                                    <div class="image-input-row">
+                                        <input type="text" class="image-url-input" placeholder="https://ejemplo.com/imagen1.jpg" required>
+                                    </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label>Marca *</label>
-                                    <input type="text" id="prodBrand" required>
+                                <button type="button" class="btn-add-image" onclick="addImageInput()" style="margin-top: 0.5rem;">
+                                    <i class="fas fa-plus"></i> Agregar otra imagen
+                                </button>
+                                <div class="image-preview-grid" id="imagePreviewGrid"></div>
+                            </div>
+                            
+                            <!-- TALLES DISPONIBLES -->
+                            <div class="form-group">
+                                <label>Talles Disponibles *</label>
+                                <div class="sizes-container" id="sizesContainer">
+                                    <label class="size-checkbox" onclick="toggleSize(this)">
+                                        <input type="checkbox" value="XS" checked> XS
+                                    </label>
+                                    <label class="size-checkbox" onclick="toggleSize(this)">
+                                        <input type="checkbox" value="S" checked> S
+                                    </label>
+                                    <label class="size-checkbox" onclick="toggleSize(this)">
+                                        <input type="checkbox" value="M" checked> M
+                                    </label>
+                                    <label class="size-checkbox" onclick="toggleSize(this)">
+                                        <input type="checkbox" value="L" checked> L
+                                    </label>
+                                    <label class="size-checkbox" onclick="toggleSize(this)">
+                                        <input type="checkbox" value="XL" checked> XL
+                                    </label>
+                                    <label class="size-checkbox" onclick="toggleSize(this)">
+                                        <input type="checkbox" value="XXL" checked> XXL
+                                    </label>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label>Categoría *</label>
-                                    <select id="prodCategory" required>
-                                        <option value="hoodies">Hoodies</option>
-                                        <option value="tshirts">Remeras</option>
-                                        <option value="sneakers">Sneakers</option>
-                                        <option value="accesorios">Accesorios</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Precio *</label>
-                                    <input type="number" id="prodPrice" required min="0">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Precio Anterior (oferta)</label>
-                                    <input type="number" id="prodOldPrice" min="0" placeholder="Opcional">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Descripción</label>
-                                    <textarea id="prodDescription" placeholder="Descripción del producto..."></textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>Imágenes (URLs separadas por coma)</label>
-                                    <textarea id="prodImages" placeholder="https://ejemplo.com/img1.jpg, https://ejemplo.com/img2.jpg" rows="3"></textarea>
-                                </div>
-                                
-                                <div class="checkbox-group">
-                                    <input type="checkbox" id="prodOnSale">
-                                    <label for="prodOnSale">Marcar como OFERTA</label>
-                                </div>
-                                
-                                <button type="submit" class="btn-save" id="submitBtn">Guardar Producto</button>
-                                <button type="button" class="btn-cancel" onclick="showProductTab('list')" id="cancelBtn" style="display: none;">Cancelar</button>
-                            </form>
-                        </div>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="prodOnSale">
+                                <label for="prodOnSale" style="font-weight: 500;">Marcar como producto en OFERTA</label>
+                            </div>
+                            
+                            <button type="submit" class="btn-save" id="submitBtn">
+                                <i class="fas fa-save"></i> Guardar Producto
+                            </button>
+                            <button type="button" class="btn-cancel" onclick="showProductTab('list')" id="cancelBtn" style="display: none;">
+                                Cancelar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
 
-            <!-- Orders Tab -->
+            <!-- PEDIDOS -->
             <div class="tab-content" id="tab-orders">
                 <h2 style="margin-bottom: 1.5rem;">Pedidos en Tiempo Real</h2>
                 <div class="admin-table">
@@ -688,6 +829,7 @@
                                 <th>Total</th>
                                 <th>Estado</th>
                                 <th>Fecha</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="ordersTable"></tbody>
@@ -702,9 +844,9 @@
 
     <script>
         // ============================================
-        // CONFIGURACIÓN FIREBASE - REEMPLAZA ESTO
+        // CONFIGURACIÓN FIREBASE
         // ============================================
-       const firebaseConfig = {
+        const firebaseConfig = {
   apiKey: "AIzaSyDEZQrwe6ocSTWB6dNKT_5xuJaFrKnrZ0U",
   authDomain: "drip-store-pro.firebaseapp.com",
   databaseURL: "https://drip-store-pro-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -719,16 +861,17 @@
         const auth = firebase.auth();
 
         // ============================================
-        // CONFIGURACIÓN ADMIN - SOLO yo
-        
-        // Opción 2: Por UID (más seguro)
-         const ADMIN_UID = "IB6Hv0atG3grskysJkCg9hJhyv72";
+        // CONFIGURACIÓN ADMIN
+        // ============================================
+        const ADMIN_UID = "IB6Hv0atG3grskysJkCg9hJhyv72"; // REEMPLAZA CON TU UID
+
         let currentUser = null;
         let products = [];
         let orders = [];
+        let imageInputCount = 1;
 
         // ============================================
-        // LOGIN CON GOOGLE (SOLO ADMIN)
+        // LOGIN
         // ============================================
         async function loginWithGoogle() {
             const provider = new firebase.auth.GoogleAuthProvider();
@@ -737,24 +880,16 @@
                 const result = await auth.signInWithPopup(provider);
                 const user = result.user;
                 
-                // Verificar si es el admin autorizado
                 if (user.uid === ADMIN_UID) {
-                    // Éxito - es el admin
                     currentUser = user;
                     showSuccess("Bienvenido, " + user.displayName);
-                    
-                    setTimeout(() => {
-                        showAdminPanel(user);
-                    }, 1000);
-                    
+                    setTimeout(() => showAdminPanel(user), 1000);
                 } else {
-                    // No es admin - cerrar sesión
                     await auth.signOut();
-                    showError("Acceso denegado. Solo el administrador autorizado puede entrar.");
+                    showError("Acceso denegado. No eres administrador.");
                 }
                 
             } catch (error) {
-                console.error(error);
                 showError("Error al iniciar sesión: " + error.message);
             }
         }
@@ -773,19 +908,14 @@
             document.getElementById('errorMsg').style.display = 'none';
         }
 
-        // ============================================
-        // PANEL ADMIN
-        // ============================================
         function showAdminPanel(user) {
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('adminPanel').classList.add('show');
             
-            // Mostrar info del admin
             document.getElementById('adminName').textContent = user.displayName || 'Admin';
             document.getElementById('adminEmail').textContent = user.email;
             document.getElementById('adminAvatar').src = user.photoURL || 'https://via.placeholder.com/40';
             
-            // Cargar datos
             loadProducts();
             loadOrders();
         }
@@ -795,27 +925,102 @@
             currentUser = null;
             document.getElementById('adminPanel').classList.remove('show');
             document.getElementById('loginScreen').style.display = 'flex';
-            document.getElementById('errorMsg').style.display = 'none';
-            document.getElementById('successMsg').style.display = 'none';
         }
 
         // ============================================
         // NAVEGACIÓN
         // ============================================
-        function showTab(tab) {
+        function showMainTab(tab) {
+            document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            
+            event.target.classList.add('active');
             document.getElementById(`tab-${tab}`).classList.add('active');
         }
 
         function showProductTab(view) {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            
             if (view === 'list') {
                 document.getElementById('product-list-view').style.display = 'block';
                 document.getElementById('product-add-view').style.display = 'none';
+                document.querySelectorAll('.admin-tab')[0].classList.add('active');
                 resetForm();
             } else {
                 document.getElementById('product-list-view').style.display = 'none';
                 document.getElementById('product-add-view').style.display = 'block';
+                document.querySelectorAll('.admin-tab')[1].classList.add('active');
             }
+        }
+
+        // ============================================
+        // MÚLTIPLES IMÁGENES
+        // ============================================
+        function addImageInput() {
+            const container = document.getElementById('imageInputsContainer');
+            const newRow = document.createElement('div');
+            newRow.className = 'image-input-row';
+            newRow.innerHTML = `
+                <input type="text" class="image-url-input" placeholder="https://ejemplo.com/imagen${++imageInputCount}.jpg">
+                <button type="button" class="btn-remove-image" onclick="removeImageInput(this)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            `;
+            container.appendChild(newRow);
+        }
+
+        function removeImageInput(btn) {
+            btn.parentElement.remove();
+            updateImagePreview();
+        }
+
+        function updateImagePreview() {
+            const inputs = document.querySelectorAll('.image-url-input');
+            const previewContainer = document.getElementById('imagePreviewGrid');
+            previewContainer.innerHTML = '';
+            
+            inputs.forEach(input => {
+                if (input.value) {
+                    const img = document.createElement('img');
+                    img.src = input.value;
+                    img.onerror = () => img.src = 'https://via.placeholder.com/80';
+                    previewContainer.appendChild(img);
+                }
+            });
+        }
+
+        // Actualizar preview al escribir
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('image-url-input')) {
+                updateImagePreview();
+            }
+        });
+
+        // ============================================
+        // TALLES
+        // ============================================
+        function toggleSize(label) {
+            label.classList.toggle('checked');
+            const checkbox = label.querySelector('input');
+            checkbox.checked = !checkbox.checked;
+        }
+
+        function getSelectedSizes() {
+            const checkboxes = document.querySelectorAll('.size-checkbox input:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        function setSelectedSizes(sizes) {
+            document.querySelectorAll('.size-checkbox').forEach(label => {
+                const cb = label.querySelector('input');
+                if (sizes.includes(cb.value)) {
+                    cb.checked = true;
+                    label.classList.add('checked');
+                } else {
+                    cb.checked = false;
+                    label.classList.remove('checked');
+                }
+            });
         }
 
         // ============================================
@@ -836,22 +1041,21 @@
             const tbody = document.getElementById('productsTable');
             tbody.innerHTML = '';
             
-            const search = document.getElementById('searchProduct')?.value?.toLowerCase() || '';
-            let filtered = search ? products.filter(p => p.name.toLowerCase().includes(search)) : products;
-            
-            filtered.forEach(product => {
+            products.forEach(product => {
                 const hasDiscount = product.oldPrice > 0 && product.oldPrice > product.price;
                 const mainImage = product.images?.[0] || 'https://via.placeholder.com/60';
+                const sizesText = product.sizes?.join(', ') || 'N/A';
                 
                 tbody.innerHTML += `
                     <tr>
-                        <td><img src="${mainImage}"></td>
+                        <td><img src="${mainImage}" onerror="this.src='https://via.placeholder.com/60'"></td>
                         <td>${product.name}</td>
                         <td>${product.brand}</td>
                         <td>
                             ${hasDiscount ? `<span style="text-decoration: line-through; color: #999;">$${product.oldPrice.toLocaleString()}</span><br>` : ''}
                             <span style="${hasDiscount ? 'color: #ff3e3e; font-weight: 700;' : ''}">$${product.price?.toLocaleString() || 0}</span>
                         </td>
+                        <td>${sizesText}</td>
                         <td>${product.onSale ? '<span class="offer-badge">Oferta</span>' : '<span style="color: #888;">Normal</span>'}</td>
                         <td>
                             <div class="admin-actions">
@@ -864,15 +1068,16 @@
             });
         }
 
-        function filterProducts() {
-            renderProducts();
-        }
-
         async function saveProduct(e) {
             e.preventDefault();
             
-            const imagesText = document.getElementById('prodImages').value;
-            const images = imagesText ? imagesText.split(',').map(url => url.trim()) : ['https://via.placeholder.com/300x350'];
+            const inputs = document.querySelectorAll('.image-url-input');
+            const images = Array.from(inputs).map(input => input.value).filter(url => url.trim() !== '');
+            
+            if (images.length === 0) {
+                showToast('Debes agregar al menos una imagen', 'error');
+                return;
+            }
             
             const productData = {
                 name: document.getElementById('prodName').value,
@@ -882,6 +1087,7 @@
                 oldPrice: parseInt(document.getElementById('prodOldPrice').value) || 0,
                 description: document.getElementById('prodDescription').value,
                 images: images,
+                sizes: getSelectedSizes(),
                 onSale: document.getElementById('prodOnSale').checked,
                 updatedAt: firebase.firestore.FieldValue.serverTimestamp()
             };
@@ -907,6 +1113,10 @@
             const product = products.find(p => p.id === id);
             if (!product) return;
             
+            // Resetear formulario
+            resetForm();
+            
+            // Llenar datos
             document.getElementById('editProductId').value = id;
             document.getElementById('prodName').value = product.name;
             document.getElementById('prodBrand').value = product.brand;
@@ -914,18 +1124,45 @@
             document.getElementById('prodPrice').value = product.price;
             document.getElementById('prodOldPrice').value = product.oldPrice || '';
             document.getElementById('prodDescription').value = product.description || '';
-            document.getElementById('prodImages').value = product.images?.join(', ') || '';
             document.getElementById('prodOnSale').checked = product.onSale;
             
+            // Imágenes
+            const container = document.getElementById('imageInputsContainer');
+            container.innerHTML = '';
+            imageInputCount = 0;
+            
+            product.images?.forEach((url, index) => {
+                const newRow = document.createElement('div');
+                newRow.className = 'image-input-row';
+                if (index === 0) {
+                    newRow.innerHTML = `<input type="text" class="image-url-input" value="${url}" required>`;
+                } else {
+                    newRow.innerHTML = `
+                        <input type="text" class="image-url-input" value="${url}">
+                        <button type="button" class="btn-remove-image" onclick="removeImageInput(this)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                }
+                container.appendChild(newRow);
+                imageInputCount++;
+            });
+            
+            updateImagePreview();
+            
+            // Talles
+            setSelectedSizes(product.sizes || ['XS', 'S', 'M', 'L', 'XL', 'XXL']);
+            
+            // Cambiar UI
             document.getElementById('formTitle').innerHTML = '<i class="fas fa-edit"></i> Editar Producto';
-            document.getElementById('submitBtn').textContent = 'Actualizar';
+            document.getElementById('submitBtn').innerHTML = '<i class="fas fa-save"></i> Actualizar Producto';
             document.getElementById('cancelBtn').style.display = 'block';
             
             showProductTab('add');
         }
 
         async function deleteProduct(id) {
-            if (!confirm('¿Eliminar este producto?')) return;
+            if (!confirm('¿Eliminar este producto permanentemente?')) return;
             try {
                 await db.collection('products').doc(id).delete();
                 showToast('Producto eliminado', 'success');
@@ -938,8 +1175,17 @@
             document.getElementById('productForm').reset();
             document.getElementById('editProductId').value = '';
             document.getElementById('formTitle').innerHTML = '<i class="fas fa-plus"></i> Añadir Producto';
-            document.getElementById('submitBtn').textContent = 'Guardar Producto';
+            document.getElementById('submitBtn').innerHTML = '<i class="fas fa-save"></i> Guardar Producto';
             document.getElementById('cancelBtn').style.display = 'none';
+            
+            // Resetear imágenes
+            const container = document.getElementById('imageInputsContainer');
+            container.innerHTML = '<div class="image-input-row"><input type="text" class="image-url-input" placeholder="https://ejemplo.com/imagen1.jpg" required></div>';
+            imageInputCount = 1;
+            document.getElementById('imagePreviewGrid').innerHTML = '';
+            
+            // Resetear talles (todos seleccionados por defecto)
+            setSelectedSizes(['XS', 'S', 'M', 'L', 'XL', 'XXL']);
         }
 
         // ============================================
@@ -969,6 +1215,12 @@
                             <td>$${order.total?.toLocaleString() || 0}</td>
                             <td><span class="status-badge ${statusClass}">${statusText}</span></td>
                             <td>${date}</td>
+                            <td>
+                                <button class="admin-btn ${order.status === 'completed' ? 'admin-btn-delete' : 'admin-btn-edit'}" 
+                                        onclick="updateOrderStatus('${order.id}', '${order.status === 'completed' ? 'pending' : 'completed'}')">
+                                    ${order.status === 'completed' ? 'Desmarcar' : 'Completar'}
+                                </button>
+                            </td>
                         </tr>
                     `;
                 });
@@ -977,6 +1229,18 @@
             });
         }
 
+        async function updateOrderStatus(orderId, status) {
+            try {
+                await db.collection('orders').doc(orderId).update({ status: status });
+                showToast(`Pedido ${status === 'completed' ? 'completado' : 'marcado como pendiente'}`, 'success');
+            } catch (error) {
+                showToast('Error actualizando pedido', 'error');
+            }
+        }
+
+        // ============================================
+        // ESTADÍSTICAS
+        // ============================================
         function updateStats() {
             document.getElementById('statProducts').textContent = products.length;
             
@@ -989,6 +1253,10 @@
                 .filter(o => o.status === 'completed')
                 .reduce((sum, o) => sum + (o.total || 0), 0);
             document.getElementById('statRevenue').textContent = '$' + monthRevenue.toLocaleString();
+            
+            // Contar clientes únicos
+            const uniqueCustomers = new Set(orders.map(o => o.userEmail)).size;
+            document.getElementById('statCustomers').textContent = uniqueCustomers;
         }
 
         // ============================================
@@ -1003,7 +1271,7 @@
 
         // Verificar sesión al cargar
         auth.onAuthStateChanged(user => {
-            if (user && user.email === ADMIN_EMAIL) {
+            if (user && user.uid === ADMIN_UID) {
                 showAdminPanel(user);
             }
         });
