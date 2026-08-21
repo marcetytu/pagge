@@ -6,17 +6,12 @@
     <title>DRIP STORE - Streetwear & Sneakers</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Firebase (SIN Storage) -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         :root {
             --primary: #000;
             --secondary: #fff;
@@ -33,14 +28,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeIn {
@@ -110,9 +99,7 @@
             transition: transform 0.3s ease;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
-        }
+        .logo:hover { transform: scale(1.05); }
 
         .nav-links {
             display: flex;
@@ -142,9 +129,7 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+        .nav-links a:hover::after { width: 100%; }
 
         .nav-icons {
             display: flex;
@@ -163,9 +148,7 @@
             transform: scale(1.1);
         }
 
-        .user-menu {
-            position: relative;
-        }
+        .user-menu { position: relative; }
 
         .user-dropdown {
             position: absolute;
@@ -178,12 +161,10 @@
             min-width: 200px;
             display: none;
             margin-top: 10px;
+            z-index: 1001;
         }
 
-        .user-dropdown.show {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
+        .user-dropdown.show { display: block; animation: fadeIn 0.3s ease; }
 
         .user-dropdown-item {
             padding: 0.8rem;
@@ -193,9 +174,7 @@
             font-size: 0.9rem;
         }
 
-        .user-dropdown-item:hover {
-            background: #f5f5f5;
-        }
+        .user-dropdown-item:hover { background: #f5f5f5; }
 
         .user-dropdown-divider {
             height: 1px;
@@ -203,9 +182,7 @@
             margin: 0.5rem 0;
         }
 
-        .cart-icon {
-            position: relative;
-        }
+        .cart-icon { position: relative; }
 
         .cart-count {
             position: absolute;
@@ -223,7 +200,7 @@
             font-weight: 700;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             margin-top: 80px;
             height: 90vh;
@@ -260,9 +237,7 @@
             animation: fadeInUp 1s ease;
         }
 
-        .hero h1 span {
-            color: var(--accent);
-        }
+        .hero h1 span { color: var(--accent); }
 
         .hero p {
             font-size: 1.3rem;
@@ -326,105 +301,130 @@
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
-        /* AI Try-On Section */
-        .ai-section {
-            padding: 5rem 5%;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .ai-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .ai-section p {
-            color: #888;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .ai-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.05);
-            padding: 2rem;
-            border-radius: 20px;
+        /* Music Player - Spotify Style */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            max-width: 380px;
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 16px;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .ai-upload {
-            border: 3px dashed rgba(255,255,255,0.3);
-            border-radius: 15px;
-            padding: 3rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
+        .music-album-art {
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        .ai-upload:hover {
-            border-color: var(--accent);
-            background: rgba(255,62,62,0.05);
-        }
-
-        .ai-upload i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-
-        .ai-result {
-            display: none;
-            margin-top: 2rem;
-        }
-
-        .ai-result.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .ai-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .ai-image-box {
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            padding: 1rem;
-        }
-
-        .ai-image-box img {
+        .music-album-art img {
             width: 100%;
-            border-radius: 10px;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .ai-image-box h4 {
-            margin-bottom: 1rem;
-            color: #888;
+        .music-info-container {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
         }
 
-        .loading-spinner {
-            display: none;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top-color: var(--accent);
+        .music-track-name {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .music-artist-name {
+            color: #b3b3b3;
+            font-size: 12px;
+            margin-top: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .music-controls-spotify {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .music-control-btn {
+            background: none;
+            border: none;
+            color: #b3b3b3;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 6px;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .music-control-btn:hover {
+            color: white;
+            transform: scale(1.1);
         }
 
-        /* Brands Marquee */
+        .music-control-btn.play-pause {
+            width: 32px;
+            height: 32px;
+            background: white;
+            color: #1a1a2e;
+            font-size: 12px;
+        }
+
+        .music-control-btn.play-pause:hover {
+            transform: scale(1.05);
+        }
+
+        .music-progress-container {
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+            right: 16px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .music-progress-bar {
+            height: 100%;
+            background: #1db954;
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .music-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #b3b3b3;
+            margin-top: 4px;
+        }
+
+        /* Brands */
         .brands {
             padding: 3rem 0;
             background: var(--light-gray);
@@ -446,7 +446,7 @@
             letter-spacing: 3px;
         }
 
-        /* Products Section */
+        /* Products */
         .products {
             padding: 5rem 5%;
             max-width: 1400px;
@@ -464,9 +464,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .section-header p {
-            color: var(--gray);
-        }
+        .section-header p { color: var(--gray); }
 
         .filters {
             display: flex;
@@ -529,9 +527,7 @@
             transition: transform 0.6s ease;
         }
 
-        .product-card:hover .product-image img {
-            transform: scale(1.1);
-        }
+        .product-card:hover .product-image img { transform: scale(1.1); }
 
         .product-badge {
             position: absolute;
@@ -560,9 +556,7 @@
             transition: bottom 0.3s ease;
         }
 
-        .product-card:hover .product-actions {
-            bottom: 0;
-        }
+        .product-card:hover .product-actions { bottom: 0; }
 
         .action-btn {
             width: 40px;
@@ -583,9 +577,7 @@
             border-color: black;
         }
 
-        .product-info {
-            padding: 1.5rem;
-        }
+        .product-info { padding: 1.5rem; }
 
         .product-brand {
             font-size: 0.75rem;
@@ -627,7 +619,7 @@
             font-weight: 700;
         }
 
-        /* Product Detail Modal */
+        /* Product Modal */
         .product-modal {
             position: fixed;
             top: 0;
@@ -651,7 +643,7 @@
         .product-modal-content {
             background: white;
             border-radius: 20px;
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
             max-height: 90vh;
             overflow: hidden;
@@ -684,7 +676,7 @@
 
         .product-main-image {
             width: 100%;
-            height: 400px;
+            height: 350px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 1rem;
@@ -708,9 +700,7 @@
         }
 
         .product-thumbnail:hover,
-        .product-thumbnail.active {
-            border-color: var(--accent);
-        }
+        .product-thumbnail.active { border-color: var(--accent); }
 
         .product-modal-info {
             padding: 3rem;
@@ -749,13 +739,9 @@
             margin-bottom: 2rem;
         }
 
-        .size-selector {
-            margin-bottom: 2rem;
-        }
+        .size-selector { margin-bottom: 2rem; }
 
-        .size-selector h4 {
-            margin-bottom: 1rem;
-        }
+        .size-selector h4 { margin-bottom: 1rem; }
 
         .size-options {
             display: flex;
@@ -804,17 +790,14 @@
             color: var(--primary);
         }
 
-        .feature h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
+        .feature h3 { font-size: 1rem; margin-bottom: 0.5rem; }
 
         .feature p {
             font-size: 0.85rem;
             color: var(--gray);
         }
 
-        /* WhatsApp Button */
+        /* WhatsApp */
         .whatsapp-btn {
             position: fixed;
             bottom: 30px;
@@ -831,7 +814,7 @@
             cursor: pointer;
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
-            z-index: 999;
+            z-index: 998;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -839,235 +822,6 @@
             transform: scale(1.1);
             box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
         }
-
-        .whatsapp-tooltip {
-            position: absolute;
-            right: 70px;
-            background: white;
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-size: 0.85rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .whatsapp-btn:hover .whatsapp-tooltip {
-            opacity: 1;
-            visibility: visible;
-            right: 75px;
-        }
-
-        /* Music Player */
-        /* Music Player - Estilo Spotify Mejorado */
-.music-player {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    right: 30px;
-    max-width: 400px;
-    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-    border-radius: 16px;
-    padding: 16px 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1);
-    z-index: 999;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    animation: slideUp 0.5s ease;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.music-album-art {
-    width: 56px;
-    height: 56px;
-    border-radius: 8px;
-    overflow: hidden;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    animation: pulse 2s ease-in-out infinite;
-}
-
-.music-album-art img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.music-album-art:hover img {
-    transform: scale(1.1);
-}
-
-.music-info-container {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-}
-
-.music-track-name {
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    animation: marquee 10s linear infinite;
-}
-
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.music-artist-name {
-    color: #b3b3b3;
-    font-size: 12px;
-    margin-top: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Controles estilo Spotify */
-.music-controls-spotify {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-top: 8px;
-}
-
-.music-control-btn {
-    background: none;
-    border: none;
-    color: #b3b3b3;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 8px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.music-control-btn:hover {
-    color: white;
-    transform: scale(1.1);
-}
-
-.music-control-btn.play-pause {
-    width: 40px;
-    height: 40px;
-    background: white;
-    color: #1a1a2e;
-    box-shadow: 0 4px 12px rgba(255,255,255,0.2);
-}
-
-.music-control-btn.play-pause:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(255,255,255,0.3);
-}
-
-/* Barra de progreso */
-.music-progress-container {
-    position: absolute;
-    bottom: 0;
-    left: 16px;
-    right: 16px;
-    height: 4px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 2px;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.music-progress-bar {
-    height: 100%;
-    background: #1db954;
-    border-radius: 2px;
-    width: 0%;
-    transition: width 0.1s linear;
-    position: relative;
-}
-
-.music-progress-bar::after {
-    content: '';
-    position: absolute;
-    right: -6px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-.music-progress-container:hover .music-progress-bar::after {
-    opacity: 1;
-}
-
-/* Tiempo */
-.music-time {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: #b3b3b3;
-    margin-top: 6px;
-}
-
-/* Animación de ondas cuando reproduce */
-.music-playing-animation {
-    display: none;
-    align-items: flex-end;
-    gap: 3px;
-    height: 20px;
-    margin-left: auto;
-}
-
-.music-playing-animation.active {
-    display: flex;
-}
-
-.music-bar {
-    width: 3px;
-    background: #1db954;
-    border-radius: 1px;
-    animation: sound 0ms -800ms linear infinite alternate;
-}
-
-.music-bar:nth-child(1) { height: 40%; animation-duration: 474ms; }
-.music-bar:nth-child(2) { height: 60%; animation-duration: 433ms; }
-.music-bar:nth-child(3) { height: 80%; animation-duration: 407ms; }
-.music-bar:nth-child(4) { height: 50%; animation-duration: 458ms; }
-
-@keyframes sound {
-    0% { height: 20%; opacity: 0.5; }
-    100% { height: 100%; opacity: 1; }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .music-player {
-        left: 10px;
-        right: 80px; /* Espacio para WhatsApp */
-        max-width: none;
-    }
-}
 
         /* Cart Sidebar */
         .cart-sidebar {
@@ -1084,9 +838,7 @@
             flex-direction: column;
         }
 
-        .cart-sidebar.show {
-            right: 0;
-        }
+        .cart-sidebar.show { right: 0; }
 
         .cart-header {
             padding: 1.5rem;
@@ -1096,9 +848,7 @@
             align-items: center;
         }
 
-        .cart-header h3 {
-            font-size: 1.2rem;
-        }
+        .cart-header h3 { font-size: 1.2rem; }
 
         .cart-close {
             font-size: 1.5rem;
@@ -1124,14 +874,9 @@
             object-fit: cover;
         }
 
-        .cart-item-info {
-            flex: 1;
-        }
+        .cart-item-info { flex: 1; }
 
-        .cart-item-name {
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
+        .cart-item-name { font-weight: 600; margin-bottom: 0.3rem; }
 
         .cart-item-price {
             color: var(--accent);
@@ -1165,9 +910,7 @@
             transition: background 0.3s ease;
         }
 
-        .btn-checkout:hover {
-            background: var(--accent);
-        }
+        .btn-checkout:hover { background: var(--accent); }
 
         .cart-overlay {
             position: fixed;
@@ -1180,9 +923,7 @@
             display: none;
         }
 
-        .cart-overlay.show {
-            display: block;
-        }
+        .cart-overlay.show { display: block; }
 
         /* Auth Modal */
         .modal-overlay {
@@ -1224,9 +965,7 @@
             transition: color 0.3s ease;
         }
 
-        .modal-close:hover {
-            color: black;
-        }
+        .modal-close:hover { color: black; }
 
         .modal h2 {
             margin-bottom: 0.5rem;
@@ -1273,9 +1012,7 @@
             transition: all 0.3s ease;
         }
 
-        .btn-full:hover {
-            background: var(--accent);
-        }
+        .btn-full:hover { background: var(--accent); }
 
         .google-btn {
             width: 100%;
@@ -1315,9 +1052,7 @@
             background: #ddd;
         }
 
-        .divider span {
-            padding: 0 1rem;
-        }
+        .divider span { padding: 0 1rem; }
 
         .auth-tabs {
             display: flex;
@@ -1351,9 +1086,7 @@
             background: black;
         }
 
-        .auth-form {
-            display: none;
-        }
+        .auth-form { display: none; }
 
         .auth-form.active {
             display: block;
@@ -1373,7 +1106,7 @@
             cursor: pointer;
         }
 
-        /* Toast Notification */
+        /* Toast */
         .toast {
             position: fixed;
             top: 100px;
@@ -1388,17 +1121,11 @@
             z-index: 4000;
         }
 
-        .toast.show {
-            transform: translateX(0);
-        }
+        .toast.show { transform: translateX(0); }
 
-        .toast.success {
-            background: #4CAF50;
-        }
+        .toast.success { background: #4CAF50; }
 
-        .toast.error {
-            background: #f44336;
-        }
+        .toast.error { background: #f44336; }
 
         /* Footer */
         footer {
@@ -1423,13 +1150,9 @@
             letter-spacing: 2px;
         }
 
-        .footer-column ul {
-            list-style: none;
-        }
+        .footer-column ul { list-style: none; }
 
-        .footer-column li {
-            margin-bottom: 0.8rem;
-        }
+        .footer-column li { margin-bottom: 0.8rem; }
 
         .footer-column a {
             color: #888;
@@ -1438,9 +1161,7 @@
             transition: color 0.3s ease;
         }
 
-        .footer-column a:hover {
-            color: white;
-        }
+        .footer-column a:hover { color: white; }
 
         .footer-bottom {
             border-top: 1px solid #333;
@@ -1452,48 +1173,22 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .features {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .product-modal-content {
-                grid-template-columns: 1fr;
-            }
-
-            .ai-comparison {
-                grid-template-columns: 1fr;
-            }
+            .features { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+            .product-modal-content { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3rem; }
+            .features { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .cart-sidebar { width: 100%; right: -100%; }
+            .music-player {
+                left: 10px;
+                right: 80px;
+                max-width: none;
             }
         }
     </style>
@@ -1506,14 +1201,13 @@
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#productos">Productos</a></li>
-                <li><a href="#ia">Prueba IA</a></li>
                 <li><a href="#ofertas">Ofertas</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
             <div class="nav-icons">
                 <i class="fas fa-search" onclick="showToast('Búsqueda próximamente', 'info')"></i>
                 <div class="user-menu">
-                    <i class="fas fa-user" onclick="toggleUserMenu()"></i>
+                    <i class="fas fa-user" onclick="toggleUserMenu()" id="userIcon"></i>
                     <div class="user-dropdown" id="userDropdown">
                         <div id="guestMenu">
                             <div class="user-dropdown-item" onclick="openAuthModal('login')">
@@ -1552,7 +1246,6 @@
             <p>Las mejores marcas al mejor precio. Envíos a todo el mundo.</p>
             <div class="hero-buttons">
                 <a href="#productos" class="btn btn-primary">Ver Colección</a>
-                <a href="#ia" class="btn btn-tryon"><i class="fas fa-magic"></i> Probar con IA</a>
             </div>
         </div>
     </section>
@@ -1579,47 +1272,6 @@
         </div>
     </section>
 
-    <!-- AI Try-On Section -->
-    <section class="ai-section" id="ia">
-        <h2><i class="fas fa-magic"></i> Prueba Virtual con IA</h2>
-        <p>Sube tu foto y prueba cómo se ve cualquier prenda en ti antes de comprar. Usamos Hugging Face (100% gratuito).</p>
-        
-        <div class="ai-container">
-            <div class="ai-upload" onclick="document.getElementById('aiPhotoInput').click()">
-                <i class="fas fa-camera"></i>
-                <h3>Sube tu foto</h3>
-                <p>Haz clic o arrastra una imagen aquí</p>
-                <input type="file" id="aiPhotoInput" accept="image/*" style="display: none;" onchange="handleAIUpload(event)">
-            </div>
-            
-            <div class="form-group" style="text-align: left;">
-                <label style="color: white; margin-bottom: 0.5rem; display: block;">Selecciona un producto para probarte:</label>
-                <select id="aiProductSelect" style="width: 100%; padding: 1rem; border-radius: 8px; border: none;">
-                    <option value="">-- Selecciona un producto --</option>
-                </select>
-            </div>
-
-            <div class="loading-spinner" id="aiLoading"></div>
-            
-            <div class="ai-result" id="aiResult">
-                <h3 style="margin-bottom: 1rem;">¡Resultado Generado!</h3>
-                <div class="ai-comparison">
-                    <div class="ai-image-box">
-                        <h4>Tu Foto Original</h4>
-                        <img id="aiOriginalImage" src="" alt="Original">
-                    </div>
-                    <div class="ai-image-box">
-                        <h4>Con la Prenda (IA)</h4>
-                        <img id="aiResultImage" src="" alt="Resultado IA">
-                    </div>
-                </div>
-                <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="addAIToCart()">
-                    <i class="fas fa-shopping-cart"></i> Comprar Esta Prenda
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Products Section -->
     <section class="products" id="productos">
         <div class="section-header reveal">
@@ -1635,9 +1287,7 @@
             <button class="filter-btn" onclick="filterProducts('accesorios')">Accesorios</button>
         </div>
 
-        <div class="products-grid" id="productsGrid">
-            <!-- Products will be loaded dynamically -->
-        </div>
+        <div class="products-grid" id="productsGrid"></div>
     </section>
 
     <!-- Features -->
@@ -1669,7 +1319,7 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Sobre Nosotros</h3>
-                <p style="color: #888; font-size: 0.9rem; line-height: 1.6;">DRIP STORE es tu destino número uno para streetwear de lujo. Trabajamos directamente con las mejores marcas.</p>
+                <p style="color: #888; font-size: 0.9rem; line-height: 1.6;">DRIP STORE es tu destino número uno para streetwear de lujo.</p>
             </div>
             <div class="footer-column">
                 <h3>Enlaces Rápidos</h3>
@@ -1677,7 +1327,6 @@
                     <li><a href="#">Nuevos Ingresos</a></li>
                     <li><a href="#">Más Vendidos</a></li>
                     <li><a href="#">Ofertas</a></li>
-                    <li><a href="#">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -1686,7 +1335,6 @@
                     <li><a href="#">FAQ</a></li>
                     <li><a href="#">Envíos</a></li>
                     <li><a href="#">Devoluciones</a></li>
-                    <li><a href="#">Términos</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -1694,7 +1342,6 @@
                 <ul>
                     <li><a href="mailto:info@dripstore.com">info@dripstore.com</a></li>
                     <li><a href="tel:+541123456789">+54 11 2345-6789</a></li>
-                    <li><a href="#">Buenos Aires, Argentina</a></li>
                 </ul>
             </div>
         </div>
@@ -1706,59 +1353,38 @@
     <!-- WhatsApp Button -->
     <div class="whatsapp-btn" onclick="openWhatsApp()">
         <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">¡Chatea con nosotros!</span>
     </div>
 
     <!-- Music Player -->
-   <!-- Music Player - Estilo Spotify -->
-<div class="music-player" id="musicPlayer">
-    <!-- Portada del álbum -->
-    <div class="music-album-art">
-        <img id="albumCover" src="https://via.placeholder.com/60/1db954/ffffff?text=♪" alt="Album">
-    </div>
-    
-    <!-- Info y controles -->
-    <div style="flex: 1; min-width: 0;">
-        <div class="music-info-container">
-            <div class="music-track-name" id="musicTitle">Cargando...</div>
-            <div class="music-artist-name" id="musicArtist">Esperando...</div>
+    <div class="music-player" id="musicPlayer">
+        <div class="music-album-art">
+            <img id="albumCover" src="https://via.placeholder.com/60/1db954/ffffff?text=♪" alt="Album">
         </div>
-        
-        <!-- Controles -->
-        <div class="music-controls-spotify">
-            <button class="music-control-btn" onclick="previousTrack()" title="Anterior">
-                <i class="fas fa-step-backward"></i>
-            </button>
-            
-            <button class="music-control-btn play-pause" onclick="togglePlay()" id="playPauseBtn" title="Play/Pause">
-                <i class="fas fa-play"></i>
-            </button>
-            
-            <button class="music-control-btn" onclick="nextTrack()" title="Siguiente">
-                <i class="fas fa-step-forward"></i>
-            </button>
-            
-            <!-- Animación de ondas -->
-            <div class="music-playing-animation" id="playingAnimation">
-                <div class="music-bar"></div>
-                <div class="music-bar"></div>
-                <div class="music-bar"></div>
-                <div class="music-bar"></div>
+        <div style="flex: 1; min-width: 0;">
+            <div class="music-info-container">
+                <div class="music-track-name" id="musicTitle">Cargando...</div>
+                <div class="music-artist-name" id="musicArtist">Esperando...</div>
+            </div>
+            <div class="music-controls-spotify">
+                <button class="music-control-btn" onclick="previousTrack()" title="Anterior">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="music-control-btn play-pause" onclick="togglePlay()" id="playPauseBtn" title="Play/Pause">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="music-control-btn" onclick="nextTrack()" title="Siguiente">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            <div class="music-time">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
             </div>
         </div>
-        
-        <!-- Barra de progreso -->
         <div class="music-progress-container" onclick="seekTrack(event)">
             <div class="music-progress-bar" id="progressBar"></div>
         </div>
-        
-        <!-- Tiempos -->
-        <div class="music-time">
-            <span id="currentTime">0:00</span>
-            <span id="duration">0:00</span>
-        </div>
     </div>
-</div>
 
     <!-- Cart Sidebar -->
     <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
@@ -1767,9 +1393,7 @@
             <h3>Tu Carrito</h3>
             <i class="fas fa-times cart-close" onclick="toggleCart()"></i>
         </div>
-        <div class="cart-items" id="cartItems">
-            <!-- Cart items will be loaded dynamically -->
-        </div>
+        <div class="cart-items" id="cartItems"></div>
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
@@ -1779,25 +1403,20 @@
         </div>
     </div>
 
-    <!-- Product Detail Modal -->
+    <!-- Product Modal -->
     <div class="product-modal" id="productModal">
         <div class="product-modal-content">
             <div class="product-modal-close" onclick="closeProductModal()">
                 <i class="fas fa-times"></i>
             </div>
-            
             <div class="product-modal-images">
                 <img id="modalMainImage" class="product-main-image" src="" alt="">
-                <div class="product-thumbnails" id="modalThumbnails">
-                    <!-- Thumbnails loaded dynamically -->
-                </div>
+                <div class="product-thumbnails" id="modalThumbnails"></div>
             </div>
-            
             <div class="product-modal-info">
                 <div class="product-modal-brand" id="modalBrand">MARCA</div>
                 <h2 class="product-modal-name" id="modalName">Nombre del Producto</h2>
                 <div class="product-modal-price" id="modalPrice">$0</div>
-                
                 <div class="size-selector">
                     <h4>Selecciona tu talla:</h4>
                     <div class="size-options">
@@ -1809,17 +1428,10 @@
                         <div class="size-option" onclick="selectSize(this)">XXL</div>
                     </div>
                 </div>
-                
-                <p class="product-modal-description" id="modalDescription">
-                    Descripción del producto...
-                </p>
-                
+                <p class="product-modal-description" id="modalDescription">Descripción del producto...</p>
                 <div class="product-modal-actions">
                     <button class="btn btn-primary" onclick="addModalToCart()">
                         <i class="fas fa-shopping-cart"></i> Añadir al Carrito
-                    </button>
-                    <button class="btn btn-tryon" onclick="tryWithAI()">
-                        <i class="fas fa-magic"></i> Probar con IA
                     </button>
                 </div>
             </div>
@@ -1830,21 +1442,16 @@
     <div class="modal-overlay" id="authModal">
         <div class="modal">
             <i class="fas fa-times modal-close" onclick="closeAuthModal()"></i>
-            
             <div class="auth-tabs">
                 <button class="auth-tab active" onclick="switchAuthTab('login')">Iniciar Sesión</button>
                 <button class="auth-tab" onclick="switchAuthTab('register')">Registrarse</button>
             </div>
-
-            <!-- Login Form -->
             <div class="auth-form active" id="loginForm">
                 <button class="google-btn" onclick="loginWithGoogle()">
                     <img src="https://www.google.com/favicon.ico" alt="Google">
                     Continuar con Google
                 </button>
-                
                 <div class="divider"><span>o</span></div>
-                
                 <form onsubmit="loginWithEmail(event)">
                     <div class="form-group">
                         <label>Email</label>
@@ -1856,21 +1463,13 @@
                     </div>
                     <button type="submit" class="btn-full">Iniciar Sesión</button>
                 </form>
-                
-                <div class="switch-auth">
-                    ¿No tienes cuenta? <a onclick="switchAuthTab('register')">Regístrate</a>
-                </div>
             </div>
-
-            <!-- Register Form -->
             <div class="auth-form" id="registerForm">
                 <button class="google-btn" onclick="loginWithGoogle()">
                     <img src="https://www.google.com/favicon.ico" alt="Google">
                     Registrarse con Google
                 </button>
-                
                 <div class="divider"><span>o</span></div>
-                
                 <form onsubmit="registerWithEmail(event)">
                     <div class="form-group">
                         <label>Nombre Completo</label>
@@ -1881,19 +1480,11 @@
                         <input type="email" id="regEmail" required placeholder="tu@email.com">
                     </div>
                     <div class="form-group">
-                        <label>Teléfono</label>
-                        <input type="tel" id="regPhone" placeholder="+54 11 2345-6789">
-                    </div>
-                    <div class="form-group">
                         <label>Contraseña</label>
                         <input type="password" id="regPassword" required placeholder="Mínimo 6 caracteres" minlength="6">
                     </div>
                     <button type="submit" class="btn-full">Crear Cuenta</button>
                 </form>
-                
-                <div class="switch-auth">
-                    ¿Ya tienes cuenta? <a onclick="switchAuthTab('login')">Inicia sesión</a>
-                </div>
             </div>
         </div>
     </div>
@@ -1901,12 +1492,9 @@
     <!-- Toast -->
     <div class="toast" id="toast"></div>
 
-    <!-- Audio Element -->
-    <audio id="audioPlayer" loop></audio>
-
     <script>
         // ============================================
-        // CONFIGURACIÓN FIREBASE - REEMPLAZA CON TUS DATOS
+        // CONFIGURACIÓN FIREBASE - REEMPLAZA ESTO
         // ============================================
         const firebaseConfig = {
   apiKey: "AIzaSyDEZQrwe6ocSTWB6dNKT_5xuJaFrKnrZ0U",
@@ -1917,162 +1505,49 @@
   appId: "1:904984433190:web:112e2a2b90106d12138ce7"
 };
 
-        // Inicializar Firebase (SIN Storage)
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
         const auth = firebase.auth();
 
         // ============================================
-        // CONFIGURACIÓN MÚSICA
+        // PLAYLIST DE MÚSICA
         // ============================================
-       // ============================================
-// REPRODUCTOR ESTILO SPOTIFY (MEJORADO)
-// ============================================
+        const PLAYLIST = [
+            {
+                title: "Street Vibes 2026",
+                artist: "Drip Store Mix",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+                cover: "https://via.placeholder.com/60/ff6b6b/ffffff?text=1"
+            },
+            {
+                title: "Urban Flow",
+                artist: "Hip Hop Beats",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+                cover: "https://via.placeholder.com/60/4ecdc4/ffffff?text=2"
+            },
+            {
+                title: "Night Drive",
+                artist: "Synthwave Mix",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+                cover: "https://via.placeholder.com/60/95e1d3/ffffff?text=3"
+            },
+            {
+                title: "Chill Mode",
+                artist: "Lo-Fi Beats",
+                url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+                cover: "https://via.placeholder.com/60/f38181/ffffff?text=4"
+            }
+        ];
 
-// Lista de canciones (puedes modificar esto)
-const PLAYLIST = [
-    {
-        title: "Memory Lane",
-        artist: "R96",
-        url: "https://files.catbox.moe/wji9xv.mp3",
-        cover: "https://via.placeholder.com/60/ff6b6b/ffffff?text=1"
-    },
-    {
-        title: "Urban Flow",
-        artist: "Hip Hop Beats",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        cover: "https://via.placeholder.com/60/4ecdc4/ffffff?text=2"
-    },
-    {
-        title: "Night Drive",
-        artist: "Synthwave Mix",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        cover: "https://via.placeholder.com/60/95e1d3/ffffff?text=3"
-    },
-    {
-        title: "Chill Mode",
-        artist: "Lo-Fi Beats",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        cover: "https://via.placeholder.com/60/f38181/ffffff?text=4"
-    }
-];
-
-let currentTrackIndex = 0;
-let audio = new Audio();
-let isPlaying = false;
-
-// Inicializar reproductor
-function initMusic() {
-    loadTrack(currentTrackIndex);
-    
-    // Eventos del audio
-    audio.addEventListener('timeupdate', updateProgress);
-    audio.addEventListener('loadedmetadata', () => {
-        document.getElementById('duration').textContent = formatTime(audio.duration);
-    });
-    audio.addEventListener('ended', nextTrack);
-}
-
-function loadTrack(index) {
-    const track = PLAYLIST[index];
-    audio.src = track.url;
-    audio.load();
-    
-    document.getElementById('musicTitle').textContent = track.title;
-    document.getElementById('musicArtist').textContent = track.artist;
-    document.getElementById('albumCover').src = track.cover;
-    
-    // Resetear barra
-    document.getElementById('progressBar').style.width = '0%';
-    document.getElementById('currentTime').textContent = '0:00';
-}
-
-function togglePlay() {
-    const btn = document.getElementById('playPauseBtn');
-    const animation = document.getElementById('playingAnimation');
-    
-    if (isPlaying) {
-        audio.pause();
-        btn.innerHTML = '<i class="fas fa-play"></i>';
-        animation.classList.remove('active');
-    } else {
-        audio.play().catch(e => {
-            showToast('Haz clic en la página primero para activar el audio', 'info');
-        });
-        btn.innerHTML = '<i class="fas fa-pause"></i>';
-        animation.classList.add('active');
-    }
-    
-    isPlaying = !isPlaying;
-}
-
-function nextTrack() {
-    currentTrackIndex = (currentTrackIndex + 1) % PLAYLIST.length;
-    loadTrack(currentTrackIndex);
-    if (isPlaying) {
-        audio.play();
-    }
-    showToast(`Siguiente: ${PLAYLIST[currentTrackIndex].title}`, 'success');
-}
-
-function previousTrack() {
-    currentTrackIndex = (currentTrackIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
-    loadTrack(currentTrackIndex);
-    if (isPlaying) {
-        audio.play();
-    }
-    showToast(`Anterior: ${PLAYLIST[currentTrackIndex].title}`, 'success');
-}
-
-function updateProgress() {
-    const percent = (audio.currentTime / audio.duration) * 100;
-    document.getElementById('progressBar').style.width = percent + '%';
-    document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
-}
-
-function seekTrack(event) {
-    const container = event.currentTarget;
-    const clickX = event.offsetX;
-    const width = container.offsetWidth;
-    const percent = clickX / width;
-    
-    audio.currentTime = percent * audio.duration;
-}
-
-function formatTime(seconds) {
-    if (isNaN(seconds)) return '0:00';
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
-
-// Atajo de teclado (barra espaciadora para play/pause)
-document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
-        e.preventDefault();
-        togglePlay();
-    }
-});
-
-        // ============================================
-        // CONFIGURACIÓN HUGGING FACE (IA GRATUITA)
-        // ============================================
-        const HF_CONFIG = {
-            token: "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", // Obtén gratis en huggingface.co/settings/tokens
-            model: "yisol/IDM-VTON" // Modelo de Virtual Try-On gratuito
-        };
-
-        // ============================================
-        // VARIABLES GLOBALES
-        // ============================================
+        let currentTrackIndex = 0;
+        let audio = new Audio();
+        let isPlaying = false;
         let products = [];
         let cart = [];
         let currentFilter = 'all';
-        let isPlaying = false;
         let currentUser = null;
         let selectedProduct = null;
         let selectedSize = 'M';
-        let aiSelectedProduct = null;
 
         // ============================================
         // INICIALIZACIÓN
@@ -2085,10 +1560,15 @@ document.addEventListener('keydown', (e) => {
             
             window.addEventListener('scroll', function() {
                 const header = document.getElementById('header');
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
+                if (window.scrollY > 100) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            });
+            
+            // Cerrar menú al hacer click fuera
+            document.addEventListener('click', function(e) {
+                const userMenu = document.querySelector('.user-menu');
+                if (!userMenu.contains(e.target)) {
+                    document.getElementById('userDropdown').classList.remove('show');
                 }
             });
         });
@@ -2097,51 +1577,70 @@ document.addEventListener('keydown', (e) => {
         // MÚSICA
         // ============================================
         function initMusic() {
-            const audio = document.getElementById('audioPlayer');
-            audio.src = MUSIC_CONFIG.url;
-            document.getElementById('musicTitle').textContent = MUSIC_CONFIG.title;
-            document.getElementById('musicArtist').textContent = MUSIC_CONFIG.artist;
-            
-            document.body.addEventListener('click', function initAudio() {
-                if (!isPlaying) {
-                    audio.volume = 0.5;
-                }
-                document.body.removeEventListener('click', initAudio);
-            }, { once: true });
+            loadTrack(0);
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('loadedmetadata', () => {
+                document.getElementById('duration').textContent = formatTime(audio.duration);
+            });
+            audio.addEventListener('ended', nextTrack);
+        }
+
+        function loadTrack(index) {
+            const track = PLAYLIST[index];
+            audio.src = track.url;
+            document.getElementById('musicTitle').textContent = track.title;
+            document.getElementById('musicArtist').textContent = track.artist;
+            document.getElementById('albumCover').src = track.cover;
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('currentTime').textContent = '0:00';
         }
 
         function togglePlay() {
-            const audio = document.getElementById('audioPlayer');
             const btn = document.getElementById('playPauseBtn');
-            const icon = document.getElementById('musicIcon');
             
             if (isPlaying) {
                 audio.pause();
-                btn.className = 'fas fa-play';
-                icon.style.animation = 'none';
+                btn.innerHTML = '<i class="fas fa-play"></i>';
             } else {
-                audio.play().catch(e => {
-                    showToast('Haz clic en la página para activar el audio', 'info');
-                });
-                btn.className = 'fas fa-pause';
-                icon.style.animation = 'pulse 1s infinite';
+                audio.play().catch(e => showToast('Haz clic en la página primero', 'info'));
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
             }
-            
             isPlaying = !isPlaying;
         }
 
-        function toggleMusic() {
-            togglePlay();
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % PLAYLIST.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audio.play();
         }
 
-        function toggleMute() {
-            const audio = document.getElementById('audioPlayer');
-            audio.muted = !audio.muted;
-            showToast(audio.muted ? 'Audio silenciado' : 'Audio activado', 'info');
+        function previousTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + PLAYLIST.length) % PLAYLIST.length;
+            loadTrack(currentTrackIndex);
+            if (isPlaying) audio.play();
+        }
+
+        function updateProgress() {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
+        }
+
+        function seekTrack(event) {
+            const container = event.currentTarget;
+            const percent = event.offsetX / container.offsetWidth;
+            audio.currentTime = percent * audio.duration;
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
         }
 
         // ============================================
-        // PRODUCTOS (Firestore)
+        // PRODUCTOS
         // ============================================
         function loadProducts() {
             db.collection('products').onSnapshot((snapshot) => {
@@ -2150,10 +1649,9 @@ document.addEventListener('keydown', (e) => {
                     products.push({ id: doc.id, ...doc.data() });
                 });
                 renderProducts();
-                updateAISelect();
             }, (error) => {
-                console.error("Error cargando productos:", error);
-                // Datos de respaldo
+                console.error("Error:", error);
+                // Datos de ejemplo si falla
                 products = [
                     {
                         id: "1",
@@ -2163,23 +1661,11 @@ document.addEventListener('keydown', (e) => {
                         price: 45000,
                         oldPrice: 55000,
                         images: ["https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400"],
-                        description: "Hoodie edición limitada con el clásico box logo de Supreme.",
+                        description: "Hoodie edición limitada.",
                         onSale: true
-                    },
-                    {
-                        id: "2",
-                        name: "Air Jordan 1 Retro High",
-                        brand: "Nike",
-                        category: "sneakers",
-                        price: 89000,
-                        oldPrice: 0,
-                        images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"],
-                        description: "Los icónicos Air Jordan 1 en su versión Retro High.",
-                        onSale: false
                     }
                 ];
                 renderProducts();
-                updateAISelect();
             });
         }
 
@@ -2187,9 +1673,7 @@ document.addEventListener('keydown', (e) => {
             const grid = document.getElementById('productsGrid');
             grid.innerHTML = '';
             
-            const filtered = currentFilter === 'all' 
-                ? products 
-                : products.filter(p => p.category === currentFilter);
+            const filtered = currentFilter === 'all' ? products : products.filter(p => p.category === currentFilter);
             
             filtered.forEach((product, index) => {
                 const card = document.createElement('div');
@@ -2197,19 +1681,15 @@ document.addEventListener('keydown', (e) => {
                 card.style.animationDelay = `${index * 0.1}s`;
                 
                 const hasDiscount = product.oldPrice > 0 && product.oldPrice > product.price;
-                const discountPercent = hasDiscount 
-                    ? Math.round((1 - product.price / product.oldPrice) * 100) 
-                    : 0;
-                
-                const mainImage = product.images && product.images[0] ? product.images[0] : 'https://via.placeholder.com/300x350';
+                const discountPercent = hasDiscount ? Math.round((1 - product.price / product.oldPrice) * 100) : 0;
+                const mainImage = product.images?.[0] || 'https://via.placeholder.com/300x350';
                 
                 card.innerHTML = `
                     <div class="product-image" onclick="openProductModal('${product.id}')">
-                        <img src="${mainImage}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/300x350/333/fff?text=${encodeURIComponent(product.name)}'">
+                        <img src="${mainImage}" alt="${product.name}">
                         ${product.onSale ? `<span class="product-badge">Oferta</span>` : ''}
                         <div class="product-actions" onclick="event.stopPropagation()">
                             <div class="action-btn" onclick="addToCart('${product.id}')"><i class="fas fa-shopping-cart"></i></div>
-                            <div class="action-btn" onclick="openProductModal('${product.id}')"><i class="fas fa-eye"></i></div>
                         </div>
                     </div>
                     <div class="product-info" onclick="openProductModal('${product.id}')" style="cursor: pointer;">
@@ -2222,50 +1702,51 @@ document.addEventListener('keydown', (e) => {
                         </div>
                     </div>
                 `;
-                
                 grid.appendChild(card);
             });
             
-            setTimeout(setupScrollReveal, 100);
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+                    }, { threshold: 0.1 });
+                    observer.observe(el);
+                });
+            }, 100);
         }
 
         function filterProducts(category) {
             currentFilter = category;
-            
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            
             renderProducts();
         }
 
         // ============================================
-        // MODAL DE PRODUCTO
+        // MODAL PRODUCTO
         // ============================================
         function openProductModal(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
             
             selectedProduct = product;
-            
-            const mainImage = product.images && product.images[0] ? product.images[0] : 'https://via.placeholder.com/600x600';
+            const mainImage = product.images?.[0] || 'https://via.placeholder.com/600x600';
             document.getElementById('modalMainImage').src = mainImage;
             
-            const thumbnailsContainer = document.getElementById('modalThumbnails');
-            thumbnailsContainer.innerHTML = '';
+            const thumbsContainer = document.getElementById('modalThumbnails');
+            thumbsContainer.innerHTML = '';
             
-            if (product.images && product.images.length > 0) {
-                product.images.forEach((img, index) => {
+            if (product.images) {
+                product.images.forEach((img, idx) => {
                     const thumb = document.createElement('img');
                     thumb.src = img;
-                    thumb.className = 'product-thumbnail' + (index === 0 ? ' active' : '');
+                    thumb.className = 'product-thumbnail' + (idx === 0 ? ' active' : '');
                     thumb.onclick = function() {
                         document.getElementById('modalMainImage').src = img;
                         document.querySelectorAll('.product-thumbnail').forEach(t => t.classList.remove('active'));
                         this.classList.add('active');
                     };
-                    thumbnailsContainer.appendChild(thumb);
+                    thumbsContainer.appendChild(thumb);
                 });
             }
             
@@ -2273,20 +1754,16 @@ document.addEventListener('keydown', (e) => {
             document.getElementById('modalName').textContent = product.name;
             
             const hasDiscount = product.oldPrice > 0 && product.oldPrice > product.price;
-            const priceHtml = hasDiscount 
-                ? `<span style="color: #ff3e3e;">$${product.price.toLocaleString()}</span> <span style="text-decoration: line-through; color: #888; font-size: 1.2rem; margin-left: 10px;">$${product.oldPrice.toLocaleString()}</span>`
+            document.getElementById('modalPrice').innerHTML = hasDiscount 
+                ? `<span style="color: #ff3e3e;">$${product.price.toLocaleString()}</span> <span style="text-decoration: line-through; color: #888; font-size: 1.2rem;">$${product.oldPrice.toLocaleString()}</span>`
                 : `$${product.price?.toLocaleString() || 0}`;
-            document.getElementById('modalPrice').innerHTML = priceHtml;
             
-            document.getElementById('modalDescription').textContent = product.description || 'Sin descripción disponible.';
-            
+            document.getElementById('modalDescription').textContent = product.description || 'Sin descripción.';
             document.getElementById('productModal').classList.add('show');
-            document.body.style.overflow = 'hidden';
         }
 
         function closeProductModal() {
             document.getElementById('productModal').classList.remove('show');
-            document.body.style.overflow = 'auto';
         }
 
         function selectSize(element) {
@@ -2302,129 +1779,6 @@ document.addEventListener('keydown', (e) => {
             }
         }
 
-        function tryWithAI() {
-            if (selectedProduct) {
-                closeProductModal();
-                document.getElementById('ia').scrollIntoView({ behavior: 'smooth' });
-                document.getElementById('aiProductSelect').value = selectedProduct.id;
-                aiSelectedProduct = selectedProduct;
-            }
-        }
-
-        // ============================================
-        // IA TRY-ON CON HUGGING FACE (GRATUITO)
-        // ============================================
-        function updateAISelect() {
-            const select = document.getElementById('aiProductSelect');
-            select.innerHTML = '<option value="">-- Selecciona un producto --</option>';
-            
-            products.forEach(product => {
-                const option = document.createElement('option');
-                option.value = product.id;
-                option.textContent = `${product.brand} - ${product.name}`;
-                select.appendChild(option);
-            });
-            
-            select.addEventListener('change', function() {
-                aiSelectedProduct = products.find(p => p.id === this.value);
-            });
-        }
-
-        async function handleAIUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            
-            if (!aiSelectedProduct) {
-                showToast('Primero selecciona un producto', 'error');
-                return;
-            }
-            
-            // Mostrar preview
-            const reader = new FileReader();
-            reader.onload = async function(e) {
-                const userImage = e.target.result;
-                document.getElementById('aiOriginalImage').src = userImage;
-                document.getElementById('aiLoading').style.display = 'block';
-                
-                try {
-                    // Intentar con Hugging Face
-                    await tryHuggingFace(userImage);
-                } catch (error) {
-                    console.log('HF falló, usando simulación:', error);
-                    simulateAIResult(userImage);
-                }
-                
-                document.getElementById('aiLoading').style.display = 'none';
-                document.getElementById('aiResult').classList.add('show');
-            };
-            
-            reader.readAsDataURL(file);
-        }
-
-        async function tryHuggingFace(userImageBase64) {
-            // Nota: El modelo IDM-VTON requiere formato específico
-            // Esta es una implementación básica, puede variar según el modelo exacto
-            
-            const response = await fetch(`https://api-inference.huggingface.co/models/${HF_CONFIG.model}`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${HF_CONFIG.token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    inputs: {
-                        image: userImageBase64,
-                        clothes_image: aiSelectedProduct.images[0],
-                        clothes_description: aiSelectedProduct.name
-                    }
-                })
-            });
-            
-            if (!response.ok) throw new Error('HF API error');
-            
-            const blob = await response.blob();
-            const resultUrl = URL.createObjectURL(blob);
-            document.getElementById('aiResultImage').src = resultUrl;
-        }
-
-        function simulateAIResult(userImage) {
-            // Simulación visual mientras se obtiene API real
-            const canvas = document.createElement('canvas');
-            canvas.width = 400;
-            canvas.height = 600;
-            const ctx = canvas.getContext('2d');
-            
-            // Fondo
-            ctx.fillStyle = '#f5f5f5';
-            ctx.fillRect(0, 0, 400, 600);
-            
-            // Imagen del usuario (simulada)
-            ctx.fillStyle = '#ddd';
-            ctx.fillRect(50, 50, 300, 400);
-            
-            // Overlay del producto
-            ctx.fillStyle = 'rgba(255,62,62,0.8)';
-            ctx.fillRect(100, 200, 200, 150);
-            
-            // Texto
-            ctx.fillStyle = '#333';
-            ctx.font = 'bold 16px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('Vista Previa IA', 200, 30);
-            ctx.font = '12px Arial';
-            ctx.fillText(aiSelectedProduct?.name || 'Producto', 200, 550);
-            ctx.fillText('(Conecta token HF para resultado real)', 200, 570);
-            
-            document.getElementById('aiResultImage').src = canvas.toDataURL();
-        }
-
-        function addAIToCart() {
-            if (aiSelectedProduct) {
-                addToCart(aiSelectedProduct.id);
-                showToast('Producto añadido desde IA', 'success');
-            }
-        }
-
         // ============================================
         // CARRITO
         // ============================================
@@ -2432,49 +1786,33 @@ document.addEventListener('keydown', (e) => {
             const product = products.find(p => p.id === productId);
             if (!product) return;
             
-            const cartItem = {
-                ...product,
-                cartId: Date.now(),
-                size: selectedSize
-            };
-            
-            cart.push(cartItem);
+            cart.push({ ...product, cartId: Date.now(), size: selectedSize });
             updateCart();
             showToast(`${product.name} añadido al carrito`, 'success');
         }
 
         function updateCart() {
-            const cartCount = document.getElementById('cartCount');
+            document.getElementById('cartCount').textContent = cart.length;
             const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-            
-            cartCount.textContent = cart.length;
-            
             cartItems.innerHTML = '';
             let total = 0;
             
             cart.forEach((item, index) => {
                 total += item.price;
-                const image = item.images?.[0] || 'https://via.placeholder.com/80';
                 cartItems.innerHTML += `
                     <div class="cart-item">
-                        <img src="${image}" alt="${item.name}">
+                        <img src="${item.images?.[0] || 'https://via.placeholder.com/80'}" alt="${item.name}">
                         <div class="cart-item-info">
                             <div class="cart-item-name">${item.name}</div>
                             <div style="font-size: 0.8rem; color: #888;">Talle: ${item.size}</div>
                             <div class="cart-item-price">$${item.price.toLocaleString()}</div>
                         </div>
-                        <i class="fas fa-trash" style="cursor: pointer; color: #999;" onclick="removeFromCart(${index})"></i>
+                        <i class="fas fa-trash" style="cursor: pointer; color: #999;" onclick="cart.splice(${index}, 1); updateCart();"></i>
                     </div>
                 `;
             });
             
-            cartTotal.textContent = '$' + total.toLocaleString();
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
+            document.getElementById('cartTotal').textContent = '$' + total.toLocaleString();
         }
 
         function toggleCart() {
@@ -2487,17 +1825,15 @@ document.addEventListener('keydown', (e) => {
                 showToast('El carrito está vacío', 'error');
                 return;
             }
-            
             if (!currentUser) {
-                showToast('Debes iniciar sesión para comprar', 'error');
+                showToast('Debes iniciar sesión', 'error');
                 openAuthModal('login');
                 return;
             }
             
             try {
                 const total = cart.reduce((sum, item) => sum + item.price, 0);
-                
-                const orderData = {
+                await db.collection('orders').add({
                     userId: currentUser.uid,
                     userName: currentUser.displayName || currentUser.email,
                     userEmail: currentUser.email,
@@ -2505,27 +1841,22 @@ document.addEventListener('keydown', (e) => {
                     total: total,
                     status: 'pending',
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                };
-                
-                await db.collection('orders').add(orderData);
+                });
                 
                 cart = [];
                 updateCart();
                 toggleCart();
+                showToast('¡Pedido realizado!', 'success');
                 
-                showToast('¡Pedido realizado con éxito!', 'success');
-                
-                const message = `Hola! Acabo de hacer un pedido por $${total.toLocaleString()}. Mi email es ${currentUser.email}`;
-                window.open(`https://wa.me/5491123456789?text=${encodeURIComponent(message)}`, '_blank');
-                
+                const msg = `Hola! Pedido por $${total.toLocaleString()}. Email: ${currentUser.email}`;
+                window.open(`https://wa.me/5491123456789?text=${encodeURIComponent(msg)}`, '_blank');
             } catch (error) {
-                console.error('Error al procesar pedido:', error);
-                showToast('Error al procesar el pedido', 'error');
+                showToast('Error al procesar', 'error');
             }
         }
 
         // ============================================
-        // AUTENTICACIÓN
+        // AUTENTICACIÓN - CORREGIDO
         // ============================================
         function setupAuthListener() {
             auth.onAuthStateChanged((user) => {
@@ -2535,15 +1866,9 @@ document.addEventListener('keydown', (e) => {
         }
 
         function toggleUserMenu() {
-            document.getElementById('userDropdown').classList.toggle('show');
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('show');
         }
-
-        document.addEventListener('click', function(e) {
-            const userMenu = document.querySelector('.user-menu');
-            if (!userMenu.contains(e.target)) {
-                document.getElementById('userDropdown').classList.remove('show');
-            }
-        });
 
         function openAuthModal(type) {
             document.getElementById('authModal').classList.add('show');
@@ -2570,13 +1895,13 @@ document.addEventListener('keydown', (e) => {
 
         async function loginWithEmail(e) {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
             try {
-                await auth.signInWithEmailAndPassword(email, password);
+                await auth.signInWithEmailAndPassword(
+                    document.getElementById('loginEmail').value,
+                    document.getElementById('loginPassword').value
+                );
                 closeAuthModal();
-                showToast('¡Bienvenido de vuelta!', 'success');
+                showToast('¡Bienvenido!', 'success');
             } catch (error) {
                 showToast('Error: ' + error.message, 'error');
             }
@@ -2584,24 +1909,16 @@ document.addEventListener('keydown', (e) => {
 
         async function registerWithEmail(e) {
             e.preventDefault();
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
-            const phone = document.getElementById('regPhone').value;
-            const password = document.getElementById('regPassword').value;
-            
             try {
-                const result = await auth.createUserWithEmailAndPassword(email, password);
-                await result.user.updateProfile({ displayName: name });
-                
-                await db.collection('users').doc(result.user.uid).set({
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                const result = await auth.createUserWithEmailAndPassword(
+                    document.getElementById('regEmail').value,
+                    document.getElementById('regPassword').value
+                );
+                await result.user.updateProfile({ 
+                    displayName: document.getElementById('regName').value 
                 });
-                
                 closeAuthModal();
-                showToast('¡Cuenta creada exitosamente!', 'success');
+                showToast('Cuenta creada', 'success');
             } catch (error) {
                 showToast('Error: ' + error.message, 'error');
             }
@@ -2639,26 +1956,17 @@ document.addEventListener('keydown', (e) => {
         }
 
         // ============================================
-        // WHATSAPP
-        // ============================================
-        function openWhatsApp() {
-            window.open(`https://wa.me/5491123456789?text=Hola! Me interesa un producto de DRIP STORE`, '_blank');
-        }
-
-        // ============================================
         // UTILIDADES
         // ============================================
+        function openWhatsApp() {
+            window.open(`https://wa.me/5491123456789?text=Hola! Me interesa un producto`, '_blank');
+        }
+
         function setupScrollReveal() {
             const reveals = document.querySelectorAll('.reveal');
-            
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
             }, { threshold: 0.1 });
-            
             reveals.forEach(el => observer.observe(el));
         }
 
@@ -2666,15 +1974,11 @@ document.addEventListener('keydown', (e) => {
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.className = `toast ${type} show`;
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('authModal');
-            if (event.target === modal) {
+            if (event.target === document.getElementById('authModal')) {
                 closeAuthModal();
             }
         }
